@@ -78,10 +78,13 @@ describe('MemoryMailDriver', () => {
       ],
     }).compile();
 
-    const service = module.get(MailService);
-    await service.sendMail({ to: ['test@test.com'] });
-    expect(service.getTestEmails()).toMatchObject([{ to: ['test@test.com'] }]);
-    service.resetTestEmails();
-    expect(service.getTestEmails()).toMatchObject([]);
+    const mailService = module.get(MailService);
+    const mailDriver = module.get(MemoryMailDriver);
+    await mailService.sendMail({ to: ['test@test.com'] });
+    expect(mailDriver.getTestEmails()).toMatchObject([
+      { to: ['test@test.com'] },
+    ]);
+    mailDriver.resetTestEmails();
+    expect(mailDriver.getTestEmails()).toMatchObject([]);
   });
 });

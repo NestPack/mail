@@ -8,17 +8,4 @@ export class MailService {
   sendMail(mailable: IMailable) {
     return this.driver.sendMail(mailable);
   }
-
-  resetTestEmails() {
-    this.driver.resetTestEmails();
-  }
-  /**
-   * ### USE FOR TESTING ONLY
-   *
-   * Use this method to access in-memory emails
-   * during testing.
-   */
-  getTestEmails() {
-    return this.driver.getTestEmails();
-  }
 }

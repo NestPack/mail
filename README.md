@@ -90,7 +90,7 @@ export class YourService {
 
 ### Usage with testing
 By default, when `NODE_ENV` is `test` the `MemoryMailDriver` will be used. This means that within tests, 
-emails aren't sent to the 3rd party services, and can instead be accessed and cleared directly from the `MailService`.
+emails aren't sent to the 3rd party services. In order to get test emails, the `MemoryMailDriver` needs to be accessed directly from the module system as show below.
 
 ```typescript
     const module = await Test.createTestingModule({
@@ -99,17 +99,18 @@ emails aren't sent to the 3rd party services, and can instead be accessed and cl
       ],
     }).compile();
 
-    const service = module.get(MailService);
+    const mailService = module.get(MailService);
+    const mailDriver = module.get(MemoryMailDriver);
+
 
     // Email is not sent, and is stored in-memory instead.
     await service.sendMail({ to: ['test@test.com'] });
 
-    // getTestEmails() is availaqble when using MemoryMailDriver
-    expect(service.getTestEmails()).toMatchObject([{ to: ['test@test.com'] }]);
+    expect(mailDriver.getTestEmails()).toMatchObject([{ to: ['test@test.com'] }]);
 
-    // resetTestEmails() is availaqble when using MemoryMailDriver
-    service.resetTestEmails();
-    expect(service.getTestEmails()).toMatchObject([]);
+    mailDriver.resetTestEmails();
+
+    expect(mailDriver.getTestEmails()).toMatchObject([]);
 ```
 
 ## Writing a Driver

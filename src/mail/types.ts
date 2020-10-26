@@ -26,19 +26,6 @@ export interface IMailDriver {
    * Send an email.
    */
   sendMail(mailable: IMailable): Promise<any>;
-  /**
-   * ### USE FOR TESTING ONLY
-   *
-   * Use this method to reset in-memory emails during testing.
-   */
-  resetTestEmails?(): void;
-  /**
-   * ### USE FOR TESTING ONLY
-   *
-   * Use this property to access in-memory emails
-   * during testing.
-   */
-  getTestEmails?(): IMailable[];
 }
 
 export interface IMailModuleOptions {

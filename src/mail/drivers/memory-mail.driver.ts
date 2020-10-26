@@ -14,10 +14,21 @@ export class MemoryMailDriver implements IMailDriver {
     this.sentTestEmails.push(mailable);
   }
 
+  /**
+   * ### USE FOR TESTING ONLY
+   *
+   * Use this method to reset in-memory emails during testing.
+   */
   resetTestEmails() {
     this.sentTestEmails = [];
   }
 
+  /**
+   * ### USE FOR TESTING ONLY
+   *
+   * Use this property to access in-memory emails
+   * during testing.
+   */
   getTestEmails() {
     return this.sentTestEmails;
   }

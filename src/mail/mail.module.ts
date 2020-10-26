@@ -5,7 +5,7 @@ import { IMailModuleOptions } from './types';
 
 /**
  * ### MailModule
- * 
+ *
  * Provides a unified interface for sending emails.
  */
 @Module({})
@@ -29,6 +29,8 @@ export class MailModule {
           provide: 'MAIL_DRIVER',
           useClass: selectedDriver,
         },
+        // Allow direct access to the DI injected driver class
+        { useExisting: 'MAIL_DRIVER', provide: selectedDriver },
         MailService,
       ],
       exports: [MailService],
