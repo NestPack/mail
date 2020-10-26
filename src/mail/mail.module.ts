@@ -10,7 +10,7 @@ import { IMailModuleOptions } from './types';
  */
 @Module({})
 export class MailModule {
-  static register(options: IMailModuleOptions = {}): DynamicModule {
+  static forRoot(options: IMailModuleOptions = {}): DynamicModule {
     const nodeEnv = process.env.NODE_ENV;
     const useMemoryIfTest = options.useMemoryIfTest ?? true;
     const selectedDriver =

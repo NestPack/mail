@@ -20,7 +20,7 @@ import { MailModule } from '@nestpack/mail';
 import { AppController } from './app.controller';
 
 @Module({
-  imports: [MailModule.register()],
+  imports: [MailModule.forRoot()],
   controllers: [AppController]
 })
 export class AppModule {}
@@ -41,7 +41,7 @@ import { MailModule, MemoryMailDriver } from '@nestpack/mail';
 import { AppController } from './app.controller';
 
 @Module({
-  imports: [MailModule.register({
+  imports: [MailModule.forRoot({
     driver: MemoryMailDriver
   })],
   controllers: [AppController]
@@ -95,7 +95,7 @@ emails aren't sent to the 3rd party services. In order to get test emails, the `
 ```typescript
     const module = await Test.createTestingModule({
       imports: [
-        MailModule.register(),
+        MailModule.forRoot(),
       ],
     }).compile();
 
@@ -116,7 +116,7 @@ emails aren't sent to the 3rd party services. In order to get test emails, the `
 ## Writing a Driver
 A custom Mail Driver must be a class that implements the IMailDriver interface. The driver is
 dependency injected, so the class has access to the Nest module system, including the options 
-passed into `MailModule.register()`.
+passed into `MailModule.forRoot()`.
 
 ```typescript
 import { Inject } from '@nestjs/common';

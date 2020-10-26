@@ -7,7 +7,7 @@ import { IMailDriver } from './types';
 describe('MailModule', () => {
   it('should instantiate', async () => {
     const module = await Test.createTestingModule({
-      imports: [MailModule.register()],
+      imports: [MailModule.forRoot()],
     }).compile();
 
     const service = module.get(MailService);
@@ -17,7 +17,7 @@ describe('MailModule', () => {
   it('should default to MemoryMailDriver', async () => {
     const module = await Test.createTestingModule({
       imports: [
-        MailModule.register({
+        MailModule.forRoot({
           useMemoryIfTest: false,
         }),
       ],
@@ -36,7 +36,7 @@ describe('MailModule', () => {
 
     const module = await Test.createTestingModule({
       imports: [
-        MailModule.register({
+        MailModule.forRoot({
           driver: RuntimeMailDriver,
           useMemoryIfTest: true,
         }),
@@ -56,7 +56,7 @@ describe('MailModule', () => {
 
     const module = await Test.createTestingModule({
       imports: [
-        MailModule.register({
+        MailModule.forRoot({
           driver: RuntimeMailDriver,
           useMemoryIfTest: false,
         }),
@@ -72,7 +72,7 @@ describe('MemoryMailDriver', () => {
   it('should be able to fake send and receive mailables', async () => {
     const module = await Test.createTestingModule({
       imports: [
-        MailModule.register({
+        MailModule.forRoot({
           driver: MemoryMailDriver,
         }),
       ],
