@@ -1,6 +1,6 @@
 {
   "name": "@nestpack/mail",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Mail Module for NestJS projects",
   "homepage": "https://github.com/nestpack/mail",
   "main": "dist/index.js",
