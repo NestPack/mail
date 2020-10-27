@@ -31,6 +31,9 @@ This driver does not send emails to a 3rd party provider, and, instead, holds yo
 
 To use a different driver, register it by passing it into the driver option.
 
+
+`forRoot()` will import the `MailModule` globally, meaning you don't need to import everywhere, and everything shares the same configuration. `forFeature()` can also be used to use different configurations in different modules.
+
 In this example, `MemoryMailDriver` is used, but a different 3rd party driver would be passed in.
 (If nothing is passed in `MemoryMailDriver` is used anyway.)
 
@@ -119,9 +122,10 @@ dependency injected, so the class has access to the Nest module system, includin
 passed into `MailModule.forRoot()`.
 
 ```typescript
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IMailable, IMailDriver, IMailModuleOptions } from '@nestpack/mail';
 
+@Injectable()
 export class CustomMailDriver implements IMailDriver {
   constructor(@Inject('MAIL_OPTIONS') private options: IMailModuleOptions) {}
 

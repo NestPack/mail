@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { IMailable, IMailDriver } from '../types';
 
 /**
@@ -7,6 +8,7 @@ import { IMailable, IMailDriver } from '../types';
  * This Driver allows enables `getTestEmails()` and `resetTestEmails()`
  * for usage in your tests to make life easier.
  */
+@Injectable()
 export class MemoryMailDriver implements IMailDriver {
   public sentTestEmails = [];
 

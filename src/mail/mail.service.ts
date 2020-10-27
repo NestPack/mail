@@ -3,7 +3,7 @@ import { IMailable, IMailDriver } from './types';
 
 @Injectable()
 export class MailService {
-  constructor(@Inject('MAIL_DRIVER') private driver: IMailDriver) {}
+  constructor(@Inject('MAIL_DRIVER') public driver: IMailDriver) {}
 
   sendMail(mailable: IMailable) {
     return this.driver.sendMail(mailable);
